@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Antra užduotis</title>
+</head>
+
+<!-- 2. Sukurkite mygtuką kuris keistų fono spalvą iš baltos į raudoną ir atvirškčiai. -->
+
+<body>
+   <div>
+      <button class="color" type="button">Keisti spalvą</button>
+   </div>
+
+   <script>
+      const button = document.querySelector('.color');
+      const body = document.querySelector('body');
+
+      button.addEventListener('click', () => {
+         body.style.backgroundColor = body.style.backgroundColor == 'red' ? 'white' : 'red';
+      });
+   </script>
+
+</body>
+</html>
