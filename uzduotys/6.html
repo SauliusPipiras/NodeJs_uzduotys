@@ -6,7 +6,32 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Šešta užduotis</title>
 </head>
+
+<!-- 6. Sukurkite mygtuką su tekstu "Rodyti Video". Paspaudus ant jo puslapyje atidarykite modalinį langą (žiūrėti iliustraciją).
+Šiame lange įdėkite Jums patinkantį Youtube video (Pasinaudojant embded kodu, kurį galite rasti prie kiekvieno video, paspaudus mygtuką Share). Prie modalinio lango sukurkite uždarymo mygtuką ant kurio paspaudus video būtų uždaromas. -->
+
 <body>
+
+   <button class="play-video">Žiūrėti video</button>
    
+   <script>
+         const video = '<iframe width="560" height="315" src="https://www.youtube.com/embed/YykjpeuMNEk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+         
+         const modal = `<div class="video">
+                           ${video}
+                           <button class="close">Uždaryti video</button>
+                        </div>`
+
+         document.body.innerHTML += modal
+
+         document.querySelector('.play-video').addEventListener('click', () => {
+            document.querySelector('.video').style.display = 'block'
+         })
+
+         document.querySelector('button.close').addEventListener('click', () => {
+            document.querySelector('.video').style.display = 'none'
+         })
+   </script>
+
 </body>
 </html>

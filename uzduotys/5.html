@@ -6,7 +6,77 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Penkta užduotis</title>
 </head>
+
+<!-- 5. Paverskite ketvirtą užduotį į žaidimą:
+Žaidžia du žaidėjai: Jūs ir kompiuteris.
+Kompiuteris keičia elemento poziciją, o Jūs bandote jį pagauti pelės paspaudimu.
+Maksimalus pozicijų keitimų kiekis: 30.
+Jei nespėjote paspausti ant blokelio taškas atitenka kompiuteriui, jei priešingai - Jums.
+Pasibaigus žaidimui paslėpkite kvadratą ir naršyklėje atvaizduokite laimėtoją bei žaidėjų surinktus taškus. -->
+
 <body>
-   
+   <script>
+
+      function getRandomNo(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+      
+      let round = 1
+      let points = {human: 0, computer: 0}
+
+      const block = document.createElement('div')
+      block.style.width = '50px'
+      block.style.height = '50px'
+      block.style.position = 'absolute'
+      block.style.top = 0
+      block.style.left = 0
+      block.style.backgroundColor = 'green'
+
+      const width = window.innerWidth
+      const height = window.innerHeight
+
+      document.body.appendChild(block)
+
+      block.addEventListener('click', () => {
+         block.dataset.round = round
+      })
+
+      const moveBlock = () => {
+
+         if(round > 10) {
+            block.style.display = 'none'
+
+            const winner = points.human > points.computer ? 'Zmogus' : 'Kompiuteris'
+            const results = `<div>
+                              <h2>Laimetojas yra: ${winner}</h2>
+                              <h3>Žmogus pelnė ${points.human} taškus</h3>
+                              <h3>Kompiuteris pelnė ${points.computer} taškus</h3>
+                           </div>`
+            document.body.innerHTML += results
+            return false
+         }
+
+         if(block.dataset.round == (round - 1)) {
+            points.human += 1
+         } else {
+            points.computer += 1
+         }
+
+         console.log('Zaidejo taskai:', points.human,'Kompiuterio taskai:', points.computer)
+
+
+         block.style.top = getRandomNo(0, height - 50) + 'px'
+         block.style.left = getRandomNo(0, width - 50) + 'px'
+         setTimeout(moveBlock, 1000)
+         round++
+      }
+
+
+
+      moveBlock()
+
+
+
+   </script>
 </body>
 </html>

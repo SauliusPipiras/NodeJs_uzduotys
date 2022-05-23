@@ -5,7 +5,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Ketvirta užduotis</title>
-   <style>
+   <!-- <style>
       div {
          width: 50px;
          height: 50px;
@@ -16,7 +16,7 @@
          top: 0;
          left: 0
       }
-   </style>
+   </style> -->
 </head>
 
 <!-- 4. Javascript pagalba dokumente sukurkite <div> elementą, kurio originalios css savybės būtų:
@@ -31,23 +31,62 @@
    Jeigu ant sukurto div elemento įvyko paspaudimas veikimą nutraukite. -->
 
 <body>
-   <div>JUMP</div>
+   <!-- <div>JUMP</div> -->
 
    <script>
 
-         function getRandomNo(min, max) {
+      function getRandomNo(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
-      const myDiv = document.querySelector('div')
+      }
 
-      const jump = setInterval (function() {
-            myDiv.style.top = getRandomNo(0, 200) + 'px'
-            myDiv.style.left = getRandomNo(0, 200) + 'px'
-        }, 500);
+      const block = document.createElement('div')
+      block.style.width = '50px'
+      block.style.height = '50px'
+      block.style.position = 'absolute'
+      block.style.top = 0
+      block.style.left = 0
+      block.style.backgroundColor = 'green'
 
-        myDiv.addEventListener('click', () => {
-            clearInterval(jump)
-        })
+      const width = window.innerWidth
+      const height = window.innerHeight
+
+      block.addEventListener('click', () => {
+         block.dataset.done = true
+      })
+
+      const moveBlock = () => {
+         if(block.dataset.done)
+            return false
+
+         block.style.top = getRandomNo(0, height - 50) + 'px'
+         block.style.left = getRandomNo(0, width - 50) + 'px'
+         setTimeout(moveBlock, 500)
+      }
+
+      moveBlock()
+
+      document.body.appendChild(block)
+
+
+
+
+
+
+
+
+      //    function getRandomNo(min, max) {
+      //       return Math.floor(Math.random() * (max - min + 1)) + min;
+      //   }
+      // const myDiv = document.querySelector('div')
+
+      // const jump = setInterval (function() {
+      //       myDiv.style.top = getRandomNo(0, 200) + 'px'
+      //       myDiv.style.left = getRandomNo(0, 200) + 'px'
+      //   }, 500);
+
+      //   myDiv.addEventListener('click', () => {
+      //       clearInterval(jump)
+      //   })
         
    </script>
 </body>

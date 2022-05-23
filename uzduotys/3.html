@@ -10,9 +10,14 @@
          height: 5000px;
       }
       .scrollbar {
-         position:relative; 
-         top:3000px;
-         border: 2px solid green;
+         position: fixed; 
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         font-size: 30px;
+         color: blueviolet;
+         text-transform: uppercase;
+         display: none;
       }
       </style>
 </head>
@@ -21,5 +26,15 @@
 
 <body>
    <div class="scrollbar"><span>Tikslas pasiektas</span></div>
+
+   <script>
+      window.addEventListener('scroll', (e) => {
+         if(window.pageYOffset >= 3000) {
+            document.querySelector('div').style.display = 'block'
+         } else {
+            document.querySelector('div').style.display = 'none'
+         }
+      })
+   </script>
 </body>
 </html>
